@@ -1,12 +1,43 @@
+import re
 import sys
+
+import pandas as pd
+import nltk
+
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from sklearn.model_selection import train_test_split
+from sqlalchemy import create_engine
+
+
+nltk.download(["punkt", "stopwords", "wordnet"])
 
 
 def load_data(database_filepath):
-    pass
+    engine = create_engine(f"sqlite:///{database_filepath}")
+    df = pd.read_sql_table("processed", con=engine)
+
+    return df
 
 
 def tokenize(text):
-    pass
+    # Normalize.
+    text = text.lower()
+    text = re.sub(r"[^a-zA-Z0-9]", " ", text)
+
+    # Tokenize.
+    tokens = word_tokenize(text)
+
+    # Clean.
+    stop_words = set(stopwords.words('english'))
+    tokens = [token for token in tokens if token not in stop_words]
+
+    # Lemmatize.
+    lemmatizer = WordNetLemmatizer()
+    tokens = [lemmatizer.lemmatize(token) for token in tokens]
+
+    return tokens
 
 
 def build_model():
