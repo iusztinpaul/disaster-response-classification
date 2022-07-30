@@ -148,9 +148,8 @@ def build_classifier(type: str, **kwargs):
 
     assert type in ("random_forest", "logistic_regression", "naive_bayes")
 
-    random_forest_classifier = RandomForestClassifier(**kwargs.get("hyper_parameters", {}))
     if type == "random_forest":
-        classifier = random_forest_classifier
+        classifier = RandomForestClassifier(**kwargs.get("hyper_parameters", {}))
     elif type == "logistic_regression":
         classifier = LogisticRegression(**kwargs.get("hyper_parameters", {}))
     else:
@@ -159,7 +158,7 @@ def build_classifier(type: str, **kwargs):
     return MultiOutputClassifier(classifier)
 
 
-def build_gridsearch(model):
+def build_gridsearch(model, **kwargs):
     """
     Adds gridsearch to the model.
 
@@ -167,11 +166,7 @@ def build_gridsearch(model):
     @return: The best model.
     """
 
-    parameters = {
-        "classifier__estimator__n_estimators": [50, 100, 150],
-        "classifier__estimator__max_depth": [2, 4, 6],
-        "classifier__estimator__min_samples_leaf": [1, 10, 25],
-    }
+    parameters = kwargs["search_hyper_parameters"]
     cv = GridSearchCV(
         estimator=model,
         param_grid=parameters,
@@ -267,19 +262,10 @@ def main():
     X, Y, category_names = load_data(database_filepath)
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
 
-    if args.debug is True and run_gridsearch is False:
-        hyper_parameters = {
-            "n_estimators": 1,
-            "n_jobs": 1
-        }
-    elif run_gridsearch is False:
-        with open(args.config_filepath) as f:
-            hyper_parameters = yaml.safe_load(f)
-    else:
-        hyper_parameters = {
-            "n_jobs": 8
-        }
+    with open(args.config_filepath) as f:
+        hyper_parameters = yaml.safe_load(f)
     print("Config: ")
+    print(f"Loaded from {args.config_filepath}")
     print(hyper_parameters)
 
     print("Building model...")
