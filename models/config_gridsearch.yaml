@@ -5,7 +5,7 @@ hyper_parameters:
   subsample_freq: 5
   random_state: 42
 search_hyper_parameters:
-  classifier__estimator__n_estimators: [ 100, 200, 300, 400, 500 ]
+  classifier__estimator__n_estimators: [ 200, 400, 500, 750, 1000 ]
   classifier__estimator__max_depth: [ 2, 3, 4 ]
   classifier__estimator__learning_rate: [ 0.05, 0.1, 0.15 ]
   classifier__estimator__subsample: [ 0.5, 0.75, 1.0 ]

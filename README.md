@@ -1,6 +1,6 @@
 # Disaster Response Pipeline Project
 
-# Table of Content
+# Table of Contents
 1. [Motivation](#motivation)
 2. [Some Cool Screenshots of the App](#screenshots)
 3. [Installation](#installation)
