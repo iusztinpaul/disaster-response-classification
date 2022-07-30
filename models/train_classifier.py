@@ -3,6 +3,7 @@ import pickle
 import re
 from typing import Union, List, Tuple
 
+import joblib
 import numpy as np
 import pandas as pd
 import nltk
@@ -241,8 +242,23 @@ def save_model(model, model_filepath: str):
     @param model_filepath: Path to the file to save the model to.
     @return: None
     """
+
     with open(model_filepath, "wb") as f:
-        pickle.dump(model, f)
+        joblib.dump(model, f)
+
+
+def load_model(model_filepath: str):
+    """
+    Loads the model from the given filepath.
+
+    @param model_filepath: Path to the file to load the model from.
+    @return: The loaded model.
+    """
+
+    with open(model_filepath, "rb") as f:
+        model = joblib.load(f)
+
+    return model
 
 
 def main():
@@ -263,17 +279,17 @@ def main():
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
 
     with open(args.config_filepath) as f:
-        hyper_parameters = yaml.safe_load(f)
+        config = yaml.safe_load(f)
     print("Config: ")
     print(f"Loaded from {args.config_filepath}")
-    print(hyper_parameters)
+    print(config)
 
     print("Building model...")
-    model = build_model(**hyper_parameters)
+    model = build_model(**config)
 
     if run_gridsearch is True:
         print("Building gridsearch...")
-        model = build_gridsearch(model)
+        model = build_gridsearch(model, **config)
 
     print("Training model(s)...")
     model.fit(X_train, Y_train)

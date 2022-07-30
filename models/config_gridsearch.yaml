@@ -2,6 +2,6 @@ type: random_forest
 hyper_parameters:
   n_jobs: 8
 search_hyper_parameters:
-  classifier__estimator__n_estimators: [ 50, 100, 150 ]
-  classifier__estimator__max_depth: [ 2, 4, 6 ]
-  classifier__estimator__min_samples_leaf: [ 1, 10, 25 ]
+  classifier__estimator__n_estimators: [ 100, 200, 300, 400 ]
+  classifier__estimator__max_depth: [ 2, 3, 4 ]
+  classifier__estimator__min_samples_leaf: [ 25, 50, 75 ]
