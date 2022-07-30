@@ -1,12 +1,18 @@
+# Data tools
 pandas
-matplotlib
 plotly
 joblib
-
 nltk
-sklearn
 
+# Models tools.
+sklearn
+lightgbm
+
+# Visualization tools.
+matplotlib
 plotly
+
+# Web tools.
 flask
 sqlalchemy
 

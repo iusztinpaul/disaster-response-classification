@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 import nltk
 import yaml
+from lightgbm import LGBMClassifier
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -142,17 +143,19 @@ def build_classifier(type: str, **kwargs):
     """
     Builds a classifier based on the given type.
 
-    @param type: Possible classifier types: "random_forest", "logistic_regression" or "naive_bayes".
+    @param type: Possible classifier types: "random_forest", "logistic_regression", "lightgbm", or "naive_bayes".
     @param kwargs: The hyperparameters for the classifier.
     @return: A classifier.
     """
 
-    assert type in ("random_forest", "logistic_regression", "naive_bayes")
+    assert type in ("random_forest", "logistic_regression", "naive_bayes", "lightgbm")
 
     if type == "random_forest":
         classifier = RandomForestClassifier(**kwargs.get("hyper_parameters", {}))
     elif type == "logistic_regression":
         classifier = LogisticRegression(**kwargs.get("hyper_parameters", {}))
+    elif type == "lightgbm":
+        classifier = LGBMClassifier(**kwargs.get("hyper_parameters", {}))
     else:
         classifier = GaussianNB(**kwargs.get("hyper_parameters", {}))
 

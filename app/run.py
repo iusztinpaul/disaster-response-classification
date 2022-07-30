@@ -47,7 +47,7 @@ def go():
     query = request.args.get('query', '')
     query = pd.DataFrame(data={
         "message": [query],
-        "genre": ["direct"]
+        "genre": ["news"]  # Added the most common genre as a default.
     })
 
     # use model to predict classification for query
