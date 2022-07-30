@@ -1,11 +1,12 @@
 # Disaster Response Pipeline Project
 
-# Content
+# Table of Content
 1. [Motivation](#motivation)
 2. [Some Cool Screenshots of the App](#screenshots)
 3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Licensing, Authors, Acknowledgements](#licensing)
+4. [Data](#data)
+5. [Usage](#usage)
+6. [Licensing, Authors, Acknowledgements](#licensing)
 
 
 ## 1. Motivation <a name="motivation"></a>
@@ -17,7 +18,33 @@ The project contains three main components:
 * `Modeling pipeline`: it creates features based on the ETL data and trains and evaluates different models.
 * `Web app`: it allows users to interact with the model and see the results.
 
-The solution classifies messages based on the following targets:
+## 2. Some Cool Screenshots of the App <a name="screenshots"></a>
+### Data Analysis
+![](images/data_analysis.png)
+### Model In Action
+![](images/model_in_action.png)
+
+## 3. Installation <a name="installation"></a>
+The code was run with:
+* Ubuntu 20.4
+* Python 3.7
+
+Create & activate a conda environment with:
+```shell
+conda create --name disaster-response-classification python=3.7
+conda activate disaster-response-classification
+```
+Install all the requirements:
+```shell
+pip install -r requirements.txt
+```
+
+## 4. Data <a name="data"></a>
+We used the `diaster response messages` dataset provided by [Appen](https://appen.com/platform-5/#data_types). It contains
+two data sources: `messages` and `categories`. Because the data sources are pretty small, to simplify the process, we
+left the raw files in the repository at `data/`.
+
+All the supported categories are the following:
 * related
 * request
 * offer
@@ -54,28 +81,7 @@ The solution classifies messages based on the following targets:
 * other_weather
 * direct_report
 
-## 2. Some Cool Screenshots of the App <a name="screenshots"></a>
-### Data Analysis
-![](images/data_analysis.png)
-### Model In Action
-![](images/model_in_action.png)
-
-## 3. Installation <a name="installation"></a>
-The code was run with:
-* Ubuntu 20.4
-* Python 3.7
-
-Create & activate a conda environment with:
-```shell
-conda create --name disaster-response-classification python=3.7
-conda activate disaster-response-classification
-```
-Install all the requirements:
-```shell
-pip install -r requirements.txt
-```
-
-## 4. Usage <a name="usage"></a>
+## 5. Usage <a name="usage"></a>
 ### File Description
 ```
  disaster_response_pipeline
@@ -121,7 +127,7 @@ python -m app.run
 ```
 To access the web app, open a browser and navigate to `http://localhost:3001/`
 
-## 5. Licensing, Authors, Acknowledgements <a name="licensing"></a>
+## 6. Licensing, Authors, Acknowledgements <a name="licensing"></a>
 The code is licensed under the MIT license. I encourage anybody to use and share the code as long as you give credit to the original author.
 I want to thank [Appen](https://appen.com/platform-5/#data_types) for their contribution to making the data available. Without their assistance, I would not have been able to train the model.
 
