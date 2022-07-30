@@ -45,6 +45,7 @@ def index():
 def go():
     # save user input in query
     query = request.args.get('query', '')
+    # TODO: Add radio buttons to pick genres.
     query = pd.DataFrame(data={
         "message": [query],
         "genre": ["news"]  # Added the most common genre as a default.
