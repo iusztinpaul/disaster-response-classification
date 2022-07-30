@@ -131,6 +131,10 @@ dmypy.json
 # Data
 *.csv
 *.db
+cache/
+
+# Models
+*.pkl
 
 # IDEs
 .idea

@@ -1,4 +1,6 @@
 pandas
+matplotlib
+plotly
 joblib
 
 nltk
@@ -7,3 +9,6 @@ sklearn
 plotly
 flask
 sqlalchemy
+
+# Dev tools.
+jupyter
