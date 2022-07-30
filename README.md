@@ -1,13 +1,21 @@
 # Disaster Response Pipeline Project
 
-## Motivation
+# Content
+1. [Motivation](#motivation)
+2. [Some Cool Screenshots of the App](#screenshots)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Licensing, Authors, Acknowledgements](#licensing)
+
+
+## 1. Motivation <a name="motivation"></a>
 The repository contains Machine Learning solutions for `classifying disaster response messages`. It uses text data
 provided by [Appen](https://appen.com/platform-5/#data_types). Thanks to their contribution, we had public
 data on which to train and test our NLP models.
 The project contains three main components:
-* `ETL pipeline`: it extracts data from multiple Appen data sources, transforms the data and merges it into a suitable format.
-* `Modeling pipeline`: it creates features based on the ETL data, trains and evaluates different models.
-* `Web app`: it allows the user to interact with the model and see the results.
+* `ETL pipeline`: it extracts data from multiple Appen data sources, transforms the data, and merges it into a suitable format.
+* `Modeling pipeline`: it creates features based on the ETL data and trains and evaluates different models.
+* `Web app`: it allows users to interact with the model and see the results.
 
 The solution classifies messages based on the following targets:
 * related
@@ -46,13 +54,13 @@ The solution classifies messages based on the following targets:
 * other_weather
 * direct_report
 
-## Some Cool Screenshots of the App
+## 2. Some Cool Screenshots of the App <a name="screenshots"></a>
 ### Data Analysis
 ![](images/data_analysis.png)
 ### Model In Action
 ![](images/model_in_action.png)
 
-## Install
+## 3. Installation <a name="installation"></a>
 The code was run with:
 * Ubuntu 20.4
 * Python 3.7
@@ -67,7 +75,7 @@ Install all the requirements:
 pip install -r requirements.txt
 ```
 
-## Usage
+## 4. Usage <a name="usage"></a>
 ### File Description
 ```
  disaster_response_pipeline
@@ -109,12 +117,12 @@ python models/train_classifier.py -database-filepath data/data.db -model-filepat
 #### Step 3
 Run the web app:
 ```shell
-python app/run.py
+python -m app.run
 ```
 To access the web app, open a browser and navigate to `http://localhost:3001/`
 
-## Licensing, Authors, Acknowledgements
+## 5. Licensing, Authors, Acknowledgements <a name="licensing"></a>
 The code is licensed under the MIT license. I encourage anybody to use and share the code as long as you give credit to the original author.
-I want to give my full gratitude to [Appen](https://appen.com/platform-5/#data_types) for their contribution to the data. Without their contribution, I would not have been able to train the model.
+I want to thank [Appen](https://appen.com/platform-5/#data_types) for their contribution to making the data available. Without their assistance, I would not have been able to train the model.
 
-If anybody has any machine learning questions, suggestions or wants to collaborate with me, feel free to contact me at `p.b.iusztin@gmail.com` or on my [LinkedIn Page](https://www.linkedin.com/in/paul-iusztin-7a047814a/).
+If anybody has machine learning questions, suggestions, or wants to collaborate with me, feel free to contact me at `p.b.iusztin@gmail.com` or on my [LinkedIn Page](https://www.linkedin.com/in/paul-iusztin-7a047814a/).

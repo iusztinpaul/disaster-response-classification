@@ -13,11 +13,11 @@ from models.train_classifier import load_model, tokenize
 app = Flask(__name__)
 
 # load data
-engine = create_engine('sqlite:///../data/data.db')
+engine = create_engine('sqlite:///data/data.db')
 df = pd.read_sql_table('processed', engine)
 
 # load model
-model = load_model("../models/classifier.pkl")
+model = load_model("models/classifier.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model
