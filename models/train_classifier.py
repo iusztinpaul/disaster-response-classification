@@ -45,7 +45,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "-run-gridsearch",
+    "-gridsearch",
     default=False,
     type=bool,
     help="Weather to run a simple train or a gridsearch."
