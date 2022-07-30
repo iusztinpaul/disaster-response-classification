@@ -36,9 +36,10 @@ conda activate disaster-response-classification
 ```
 Install all the requirements:
 ```shell
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
-Install `Apache Airflow`:
+Install `Apache Airflow` (Optional):
 ```shell
 # Airflow needs a home. `~/airflow` is the default, but you can put it
 # somewhere else if you prefer (optional)
@@ -54,7 +55,7 @@ pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}
 
 # The Standalone command will initialise the database, make a user,
 # and start all components for you.
-airflow standalone
+#airflow standalone
 
 # Visit localhost:8080 in the browser and use the admin account details
 # shown on the terminal to login.
@@ -132,11 +133,16 @@ All the supported categories are the following:
 ```
 
 ### Instructions
-#### Step 1
-Start Airflow locally with the `standalone` command.
+#### Step 1 (Optional)
+Start Airflow locally with `docker-compose`:
 ```shell
-airflow standalone
+cd airflow-docker
+echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
+docker-compose up airflow-init
+docker-compose up
 ```
+**NOTE:** You need `docker` and `docker-compose` installed on your machine.
+
 #### Step 1
 From the root directory run the ETL pipeline:
 ```shell
