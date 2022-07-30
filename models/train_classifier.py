@@ -150,14 +150,15 @@ def build_classifier(type: str, **kwargs):
 
     assert type in ("random_forest", "logistic_regression", "naive_bayes", "lightgbm")
 
+    hyper_parameters = kwargs.get("hyper_parameters", {})
     if type == "random_forest":
-        classifier = RandomForestClassifier(**kwargs.get("hyper_parameters", {}))
+        classifier = RandomForestClassifier(**hyper_parameters)
     elif type == "logistic_regression":
-        classifier = LogisticRegression(**kwargs.get("hyper_parameters", {}))
+        classifier = LogisticRegression(**hyper_parameters)
     elif type == "lightgbm":
-        classifier = LGBMClassifier(**kwargs.get("hyper_parameters", {}))
+        classifier = LGBMClassifier(**hyper_parameters)
     else:
-        classifier = GaussianNB(**kwargs.get("hyper_parameters", {}))
+        classifier = GaussianNB(**hyper_parameters)
 
     return MultiOutputClassifier(classifier)
 
@@ -275,7 +276,7 @@ def main():
 
     database_filepath = args.database_filepath
     model_filepath = args.model_filepath
-    run_gridsearch = args.run_gridsearch
+    run_gridsearch = args.gridsearch
 
     print("Loading data...\n    DATABASE: {}".format(database_filepath))
     X, Y, category_names = load_data(database_filepath)

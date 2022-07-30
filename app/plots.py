@@ -162,7 +162,7 @@ def create_genre_target_distribution_plot(df: pd.DataFrame):
             row=i + 1, col=1
         )
     fig.update_layout(**{
-        "title": "Distribution of Each Target Class Relative to Genre Distribution",
+        "title": "Distribution of Each Target Class Relative to Genre",
         "barmode": "stack",
         "height": 600,
         "showlegend": False,

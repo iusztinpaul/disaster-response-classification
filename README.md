@@ -94,34 +94,37 @@ All the supported categories are the following:
           |-- data
                 |-- disaster_message.csv
                 |-- disaster_categories.csv
-                |-- DisasterResponse.db
+                |-- data.db (outcome of the ETL pipeline)
                 |-- process_data.py
           |-- models
-                |-- classifier.pkl
+                |-- classifier.pkl (outcome of the modeling pipeline)
                 |-- train_classifier.py
-          |-- Preparation
+          |-- notebooks
                 |-- ETL Pipeline Preparation.ipynb
                 |-- ML Pipeline Preparation.ipynb
+          |-- images
+                |-- data_analysis.png
+                |-- model_in_action.png
           |-- README
 ```
 
 ### Instructions
 #### Step 1
-Run the ETL pipeline:
+From the root directory run the ETL pipeline:
 ```shell
 python data/process_data.py -messages-filepath data/disaster_messages.csv -categories-filepath data/disaster_categories.csv -database-filepath data/data.db
 ```
 #### Step 2
-Train the model:
+From the root directory train the model:
 ```shell
 python models/train_classifier.py -database-filepath data/data.db -model-filepath models/classifier.pkl -config-filepath models/config.yaml
 ```
 Hyperparameter tuning with GridSearchCV:
 ```shell
-python models/train_classifier.py -database-filepath data/data.db -model-filepath models/classifier.pkl -config-filepath models/config_gridsearch.yaml.yaml -gridsearch True
+python models/train_classifier.py -database-filepath data/data.db -model-filepath models/classifier.pkl -config-filepath models/config_gridsearch.yaml -gridsearch True
 ```
 #### Step 3
-Run the web app:
+From the root directory run the web app:
 ```shell
 python -m app.run
 ```
