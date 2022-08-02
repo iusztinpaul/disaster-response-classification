@@ -39,29 +39,6 @@ Install all the requirements:
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
-Install `Apache Airflow` (Optional):
-```shell
-# Airflow needs a home. `~/airflow` is the default, but you can put it
-# somewhere else if you prefer (optional)
-export AIRFLOW_HOME=~/airflow
-
-# Install Airflow using the constraints file
-AIRFLOW_VERSION=2.3.3
-PYTHON_VERSION="$(python --version | cut -d " " -f 2 | cut -d "." -f 1-2)"
-# For example: 3.7
-CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
-# For example: https://raw.githubusercontent.com/apache/airflow/constraints-2.3.3/constraints-3.7.txt
-pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
-
-# The Standalone command will initialise the database, make a user,
-# and start all components for you.
-#airflow standalone
-
-# Visit localhost:8080 in the browser and use the admin account details
-# shown on the terminal to login.
-# Enable the example_bash_operator dag in the home page
-```
-**NOTE:** Steps taken from the [Airflow official documentation](https://airflow.apache.org/docs/apache-airflow/stable/start/local.html).
 
 ## 4. Data <a name="data"></a>
 We used the `diaster response messages` dataset provided by [Appen](https://appen.com/platform-5/#data_types). It contains
@@ -134,14 +111,7 @@ All the supported categories are the following:
 
 ### Instructions
 #### Step 1 (Optional)
-Start Airflow locally with `docker-compose`:
-```shell
-cd airflow-docker
-echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
-docker-compose up airflow-init
-docker-compose up
-```
-**NOTE:** You need `docker` and `docker-compose` installed on your machine.
+
 
 #### Step 1
 From the root directory run the ETL pipeline:
@@ -163,6 +133,40 @@ From the root directory run the web app:
 python -m app.run
 ```
 To access the web app, open a browser and navigate to `http://localhost:3001/`
+
+### Apache Airflow (Optional)
+#### Install
+The `ETL pipeline` has `Airflow` support. This part is optional, because you can run the ETL script directly with Python.
+</br> For development purposes, you can `install it` locally with ( if you **just** want to **run it** go **directly to the next step**):
+```shell
+# Airflow needs a home. `~/airflow` is the default, but you can put it
+# somewhere else if you prefer (optional)
+export AIRFLOW_HOME=~/airflow
+
+# Install Airflow using the constraints file
+AIRFLOW_VERSION=2.3.3
+PYTHON_VERSION="$(python --version | cut -d " " -f 2 | cut -d "." -f 1-2)"
+# For example: 3.7
+CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
+# For example: https://raw.githubusercontent.com/apache/airflow/constraints-2.3.3/constraints-3.7.txt
+pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+
+# Visit localhost:8080 in the browser and use the admin account details
+```
+**NOTE:** The steps are taken from the [Airflow official documentation](https://airflow.apache.org/docs/apache-airflow/stable/start/local.html).
+
+#### Run
+Start Airflow locally with `docker-compose`:
+```shell
+cd airflow-docker
+echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
+docker-compose up airflow-init
+docker-compose up
+```
+**NOTE:** You need `docker` and `docker-compose` installed on your machine.
+</br>
+![](images/etl_airflow.png)
+</br>
 
 ## 6. Licensing, Authors, Acknowledgements <a name="licensing"></a>
 The code is licensed under the MIT license. I encourage anybody to use and share the code as long as you give credit to the original author.
