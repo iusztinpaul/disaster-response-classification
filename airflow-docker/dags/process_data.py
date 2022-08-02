@@ -1,5 +1,3 @@
-import os
-
 import pandas as pd
 from airflow import DAG
 from airflow.operators.python import PythonOperator
@@ -9,36 +7,19 @@ from datetime import datetime
 from data import process_data
 
 
-def load(save_filepath: str = "./dags/data/loaded.csv", **kwargs):
-    print("\n\n")
-    print("load")
-    print(f"Current working directory: {os.getcwd()}")
-    print(f"Current working directory: {os.path.dirname(os.path.realpath(__file__))}")
-    print(f"Current working directory: {os.listdir('.')}")
-    print(f"Dags directory: {os.listdir('./dags')}")
-    print(f"Data directory: {os.listdir('./dags/data')}")
-    print("Kwargs")
-    print(kwargs)
-    print("\n\n")
-
+def load(save_filepath: str = "./data/loaded.csv", **kwargs):
     ti = kwargs["ti"]
 
     df = process_data.load_data(
-        messages_filepath="./dags/data/disaster_messages.csv",
-        categories_filepath="./dags/data/disaster_categories.csv",
+        messages_filepath="./data/disaster_messages.csv",
+        categories_filepath="./data/disaster_categories.csv",
     )
     df.to_csv(save_filepath, index=False)
 
     ti.xcom_push(key="load_filepath", value=save_filepath)
 
 
-def clean(save_filepath: str = "./dags/data/cleaned.csv", **kwargs):
-    print("\n\n")
-    print("load")
-    print(f"Current working directory: {os.getcwd()}")
-    print("Kwargs")
-    print(kwargs)
-
+def clean(save_filepath: str = "./data/cleaned.csv", **kwargs):
     ti = kwargs["ti"]
 
     df_file_path = ti.xcom_pull(key="load_filepath", task_ids="load_data")
@@ -50,13 +31,7 @@ def clean(save_filepath: str = "./dags/data/cleaned.csv", **kwargs):
     ti.xcom_push(key="clean_filepath", value=save_filepath)
 
 
-def save(save_filepath: str = "./dags/data/data.db", **kwargs):
-    print("\n\n")
-    print("load")
-    print(f"Current working directory: {os.getcwd()}")
-    print("Kwargs")
-    print(kwargs)
-
+def save(save_filepath: str = "./data/data.db", **kwargs):
     ti = kwargs["ti"]
 
     df_file_path = ti.xcom_pull(key="clean_filepath", task_ids="clean_data")
