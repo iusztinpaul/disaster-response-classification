@@ -172,4 +172,5 @@ docker-compose up
 The code is licensed under the MIT license. I encourage anybody to use and share the code as long as you give credit to the original author.
 I want to thank [Appen](https://appen.com/platform-5/#data_types) for their contribution to making the data available. Without their assistance, I would not have been able to train the model.
 
-If anybody has machine learning questions, suggestions, or wants to collaborate with me, feel free to contact me at `p.b.iusztin@gmail.com` or on my [LinkedIn Page](https://www.linkedin.com/in/paul-iusztin-7a047814a/).
+If anybody has machine learning questions, suggestions, or wants to collaborate with me, feel free to contact me 
+at p.b.iusztin@gmail.com or to connect with me on [LinkedIn](https://www.linkedin.com/in/paul-iusztin-7a047814a/).
